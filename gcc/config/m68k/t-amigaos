@@ -1,7 +1,7 @@
 # Makefile fragment for AmigaOS target.
 
 # Extra object file linked to the cc1* executables.
-amigaos.o: $(srcdir)/config/m68k/amigaos.c $(CONFIG_H)
+amigaos.o: $(srcdir)/config/m68k/amigaos.c $(CONFIG_H) genrtl.h insn-codes.h
 	$(CC) -c $(ALL_CFLAGS) $(ALL_CPPFLAGS) $(INCLUDES) $<
 
 # We don't need a libgcc1, it's all in ixemul.library and LibNIX
