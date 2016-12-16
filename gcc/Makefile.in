@@ -550,6 +550,23 @@ all: all.indirect
 # This tells GNU Make version 3 not to put all variables in the environment.
 .NOEXPORT:
 
+# The files that "belong" in CONFIG_H are deliberately omitted
+# because having them there would not be useful in actual practice.
+# All they would do is cause complete recompilation every time
+# one of the machine description files is edited.
+# That may or may not be what one wants to do.
+# If it is, rm *.o is an easy way to do it.
+# CONFIG_H = $(host_xm_file) $(tm_file)
+CONFIG_H =
+RTL_BASE_H = rtl.h rtl.def machmode.h machmode.def
+RTL_H = $(RTL_BASE_H) genrtl.h
+TREE_H = tree.h real.h tree.def machmode.h machmode.def tree-check.h
+BASIC_BLOCK_H = basic-block.h bitmap.h sbitmap.h
+DEMANGLE_H = $(srcdir)/../include/demangle.h
+RECOG_H = recog.h
+EXPR_H = expr.h insn-codes.h
+REGS_H = regs.h varray.h machmode.h machmode.def
+
 # sed inserts variable overrides after the following line.
 ####target overrides
 @target_overrides@
@@ -771,22 +788,6 @@ DPBIT_FUNCS = _pack_df _unpack_df _addsub_df _mul_df _div_df \
     _lt_df _le_df _si_to_df _df_to_si _negate_df _make_df \
     _df_to_sf
 
-# The files that "belong" in CONFIG_H are deliberately omitted
-# because having them there would not be useful in actual practice.
-# All they would do is cause complete recompilation every time
-# one of the machine description files is edited.
-# That may or may not be what one wants to do.
-# If it is, rm *.o is an easy way to do it.
-# CONFIG_H = $(host_xm_file) $(tm_file)
-CONFIG_H =
-RTL_BASE_H = rtl.h rtl.def machmode.h machmode.def
-RTL_H = $(RTL_BASE_H) genrtl.h
-TREE_H = tree.h real.h tree.def machmode.h machmode.def tree-check.h
-BASIC_BLOCK_H = basic-block.h bitmap.h sbitmap.h
-DEMANGLE_H = $(srcdir)/../include/demangle.h
-RECOG_H = recog.h
-EXPR_H = expr.h insn-codes.h
-REGS_H = regs.h varray.h machmode.h machmode.def
 #
 # Language makefile fragments.
 
